@@ -1,0 +1,72 @@
+unit untGenerico;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, Data.DB, FMX.Edit,comobj,
+  FMX.ExtCtrls, FMX.Layouts, FMX.Grid, Data.Bind.Components, Data.Bind.DBScope,
+  Datasnap.DBClient, Fmx.Bind.Navigator, Data.Bind.EngExt, Fmx.Bind.DBEngExt,
+  Fmx.Bind.Editors, Data.Bind.DBLinks, Fmx.Bind.DBLinks;
+
+type
+  TfrmGenerico = class(TForm)
+    ToolBar1: TToolBar;
+    StatusBar1: TStatusBar;
+    btnNovo: TSpeedButton;
+    btnAlteracao: TSpeedButton;
+    Panel1: TPanel;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    LabelStatus: TLabel;
+    ClearingEdit1: TClearingEdit;
+    lbCodigo: TLabel;
+    StyleBook1: TStyleBook;
+    CalloutPanel1: TCalloutPanel;
+    cdsAgenda: TClientDataSet;
+    cdsAgendaIDAGENDA: TIntegerField;
+    cdsAgendaDATA: TDateField;
+    cdsAgendaHORA_INICIAL: TTimeField;
+    cdsAgendaHORA_FINAL: TTimeField;
+    cdsAgendaDESCRICAO: TStringField;
+    cdsAgendaSTATUS: TIntegerField;
+    editCaminho: TEdit;
+    Label1: TLabel;
+    dsAgenda: TDataSource;
+    BindNavigatorAgenda: TBindNavigator;
+    BindScopeDB: TBindScopeDB;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    CalendarEdit1: TCalendarEdit;
+    BindingsList1: TBindingsList;
+    DBLinkCalendarEdit1DATA1: TBindDBEditLink;
+    Edit1: TEdit;
+    procedure FormActivate(Sender: TObject);
+
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+  end;
+
+var
+  frmGenerico: TfrmGenerico;
+
+implementation
+
+{$R *.fmx}
+
+
+
+
+
+procedure TfrmGenerico.FormActivate(Sender: TObject);
+begin
+  cdsAgenda.FileName := editCaminho.Text;
+end;
+
+end.

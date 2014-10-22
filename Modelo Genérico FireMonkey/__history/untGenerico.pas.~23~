@@ -1,0 +1,144 @@
+unit untGenerico;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, Data.DB, FMX.Edit,comobj,
+  FMX.ExtCtrls, FMX.Layouts, FMX.Grid, Data.Bind.Components, Data.Bind.DBScope,
+  Datasnap.DBClient, Fmx.Bind.Navigator, Data.Bind.EngExt, Fmx.Bind.DBEngExt,
+  Fmx.Bind.Editors, Data.Bind.DBLinks, Fmx.Bind.DBLinks, FMX.Memo, FMX.ListBox;
+
+type
+  TfrmGenerico = class(TForm)
+    ToolBar1: TToolBar;
+    StatusBar1: TStatusBar;
+    btnNovo: TSpeedButton;
+    btnAlteracao: TSpeedButton;
+    Panel1: TPanel;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    ClearingEdit1: TClearingEdit;
+    lbCodigo: TLabel;
+    StyleBook1: TStyleBook;
+    CalloutPanel1: TCalloutPanel;
+    cdsAgenda: TClientDataSet;
+    cdsAgendaIDAGENDA: TIntegerField;
+    cdsAgendaDATA: TDateField;
+    cdsAgendaHORA_INICIAL: TTimeField;
+    cdsAgendaHORA_FINAL: TTimeField;
+    cdsAgendaDESCRICAO: TStringField;
+    cdsAgendaSTATUS: TIntegerField;
+    editCaminho: TEdit;
+    Label1: TLabel;
+    dsAgenda: TDataSource;
+    BindNavigatorAgenda: TBindNavigator;
+    BindScopeDB: TBindScopeDB;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    CalendarEdit1: TCalendarEdit;
+    BindingsList1: TBindingsList;
+    DBLinkCalendarEdit1DATA1: TBindDBEditLink;
+    editHoraInicial: TEdit;
+    DBLinkEdit1HORA_INICIAL1: TBindDBEditLink;
+    editHoraFinal: TEdit;
+    DBLinkeditHoraFinalHORA_FINAL1: TBindDBEditLink;
+    memoDescricao: TMemo;
+    DBLinkMemo1DESCRICAO1: TBindDBMemoLink;
+    DBLinkComboSatusSTATUS1: TBindDBListLink;
+    StringGrid1: TStringGrid;
+    DBLinkStringGrid11: TBindDBGridLink;
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure cdsAgendaAfterInsert(DataSet: TDataSet);
+    procedure cdsAgendaAfterPost(DataSet: TDataSet);
+    procedure cdsAgendaAfterEdit(DataSet: TDataSet);
+    procedure cdsAgendaAfterDelete(DataSet: TDataSet);
+    procedure cdsAgendaAfterCancel(DataSet: TDataSet);
+
+  private
+    { Private declarations }
+    procedure Determinando_Tab_Order;
+  public
+    { Public declarations }
+    procedure Controles_Visuais;
+  end;
+
+var
+  frmGenerico: TfrmGenerico;
+
+implementation
+
+{$R *.fmx}
+
+
+uses  Midaslib;
+
+
+procedure TfrmGenerico.cdsAgendaAfterCancel(DataSet: TDataSet);
+begin
+  Controles_Visuais;
+end;
+
+procedure TfrmGenerico.cdsAgendaAfterDelete(DataSet: TDataSet);
+begin
+  Controles_Visuais;
+end;
+
+procedure TfrmGenerico.cdsAgendaAfterEdit(DataSet: TDataSet);
+begin
+  Controles_Visuais;
+  CalendarEdit1.SetFocus;
+end;
+
+procedure TfrmGenerico.cdsAgendaAfterInsert(DataSet: TDataSet);
+begin
+  Controles_Visuais;
+  CalendarEdit1.SetFocus;
+
+end;
+
+procedure TfrmGenerico.cdsAgendaAfterPost(DataSet: TDataSet);
+begin
+  Controles_Visuais;
+end;
+
+procedure TfrmGenerico.Controles_Visuais;
+begin
+  CalendarEdit1.Enabled   := cdsAgenda.State IN [dsInsert, dsEdit];
+  editHoraInicial.Enabled := cdsAgenda.State IN [dsInsert, dsEdit];
+  editHoraFinal.Enabled   := cdsAgenda.State IN [dsInsert, dsEdit];
+  ComboSatus.Enabled      := cdsAgenda.State IN [dsInsert, dsEdit];
+  memoDescricao.Enabled   := cdsAgenda.State IN [dsInsert, dsEdit];
+
+end;
+
+procedure TfrmGenerico.Determinando_Tab_Order;
+begin
+  CalendarEdit1.TabOrder   := 0;
+  editHoraInicial.TabOrder := 1;
+  editHoraFinal.TabOrder   := 2;
+  ComboSatus.TabOrder      := 3;
+  memoDescricao.TabOrder   := 4;
+
+end;
+
+procedure TfrmGenerico.FormActivate(Sender: TObject);
+begin
+  cdsAgenda.FileName := editCaminho.Text;
+end;
+
+procedure TfrmGenerico.FormCreate(Sender: TObject);
+  var
+   Caminho : string;
+begin
+  Caminho := ExtractFileDir(GetCurrentDir);
+  cdsAgenda.FileName := Caminho + '\BD\CDSAGENDA.XML';
+  cdsAgenda.Open;
+  Determinando_Tab_Order;
+
+end;
+
+end.

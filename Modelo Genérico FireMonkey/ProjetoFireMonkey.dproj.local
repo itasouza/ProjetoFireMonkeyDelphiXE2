@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2012/10/24 10:29:04.000.338,=C:\Users\itamar.souza\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2012/10/30 09:21:57.000.522,=C:\Users\itamar.souza\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2012/10/30 09:27:28.000.605,C:\Users\itamar.souza\Documents\RAD Studio\Projects\Unit1.fmx=C:\Componentes - Sistemas Fontes\Modelo Genérico FireMonkey\untGenerico.fmx</Transaction>
+    <Transaction>2012/10/30 09:27:28.000.605,C:\Users\itamar.souza\Documents\RAD Studio\Projects\Unit1.pas=C:\Componentes - Sistemas Fontes\Modelo Genérico FireMonkey\untGenerico.pas</Transaction>
+    <Transaction>2012/10/30 09:27:47.000.371,C:\Users\itamar.souza\Documents\RAD Studio\Projects\Project1.dproj=C:\Componentes - Sistemas Fontes\Modelo Genérico FireMonkey\ProjetoFireMonkey.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
